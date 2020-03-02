@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 2020_02_28_220326) do
   end
 
   create_table "games", force: :cascade do |t|
-    t.text "input"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
