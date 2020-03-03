@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Game from './Game';
 import Menu from './Menu'
-import Results from './Results';
+// import Results from './Results';
 import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col'
+// import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col'
 
 export default class User extends Component {
 
@@ -45,14 +45,11 @@ export default class User extends Component {
 
         if(this.state.clicked){
             return(
-                <div>
-                    <h1>GIFFYMind</h1>
+                <div className="centercontainer">
+                    <h1 className="funfont">GIFFYMind</h1>
                     < Menu />
-                    <Row>
-                        <Col sm={1}></Col>
-                        <Col sm={7}>< Game newBoard={this.state.game}/></Col>
-                        <Col sm={4}>< Results /></Col>
-                    </Row>
+                    <br />
+                    < Game newBoard={this.state.game}/>
                 </div>
             )
         }
@@ -60,11 +57,14 @@ export default class User extends Component {
 
 
         return (
-            <div>
-                <h1>GIFFYMind</h1>
-                <h3>Enter your username</h3>
-                <input type="text" placeholder="Please Enter Username" value={this.state.username} onChange={this.handleChange}/>
-                <Button type="submit" onClick={this.handleClick}>Enter</Button>
+            <div className="centercontainer">
+                <h1 className="funfont">GIFFYMind</h1>
+                <h3>Enter your username:</h3>
+                <br />
+                <input type="text" placeholder="" value={this.state.username} onChange={this.handleChange}/>
+                <br />
+                <br />
+                <Button variant="dark" type="submit" onClick={this.handleClick}>Go!</Button>
             </div>
         )
     }

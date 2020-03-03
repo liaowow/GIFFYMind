@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import GifChooser from './GifChooser';
 import Chance from './Chance'
 
 export default class Game extends Component {
@@ -8,7 +7,7 @@ export default class Game extends Component {
         console.log(this.props.newBoard)
         return (
             <div>
-                <h3>New Game</h3>
+                <h6 className="funfontsm">New Game</h6>
                 <div className="main_panel">
                     < Chance />
                     < Chance />
@@ -20,7 +19,6 @@ export default class Game extends Component {
                     < Chance />
                     < Chance />
                     < Chance />
-                    < GifChooser />
                 </div>
             </div>
         )

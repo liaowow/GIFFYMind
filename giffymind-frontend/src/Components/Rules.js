@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import Popover from 'react-bootstrap/Popover';
-import Tooltip from 'react-bootstrap/Tooltip'
+
 
 export default class Rules extends Component {
     constructor(props, context) {
@@ -27,9 +26,9 @@ export default class Rules extends Component {
       render() {
     
         return (
-          <div>
-            <Button variant="light" size="lg" onClick={this.handleShow}>
-              Rules
+          <div className="somespace">
+            <Button variant="info" size="lg" onClick={this.handleShow}>
+              Game Rules
             </Button>
     
             <Modal show={this.state.show} onHide={this.handleClose}>
@@ -60,7 +59,7 @@ export default class Rules extends Component {
                 <p> Good Luck!</p>
               </Modal.Body>
               <Modal.Footer>
-                <Button onClick={this.handleClose}>Close</Button>
+                <Button variant="info" onClick={this.handleClose}>Close</Button>
               </Modal.Footer>
             </Modal>
           </div>

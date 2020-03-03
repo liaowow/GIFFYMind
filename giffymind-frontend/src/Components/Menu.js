@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Rules from './Rules'
+import Results from './Results';
 
 export default class Menu extends Component {
 
@@ -11,8 +11,10 @@ export default class Menu extends Component {
             <div className="menu">
                 <ButtonToolbar>
                     <Rules/>
-                    <Button variant="light" size="lg">Log Out</Button>
+                    <Results/>
+                    <Button variant="dark" size="lg">Log Out</Button>
                 </ButtonToolbar>
+                <br />
             </div>
         )
     }
