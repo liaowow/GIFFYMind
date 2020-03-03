@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Chance from './Chance'
+import ChanceContainer from './ChanceContainer'
 
 export default class Game extends Component {
     
@@ -8,18 +8,7 @@ export default class Game extends Component {
         return (
             <div>
                 <h6 className="funfontsm">New Game</h6>
-                <div className="main_panel">
-                    < Chance />
-                    < Chance />
-                    < Chance />
-                    < Chance />
-                    < Chance />
-                    < Chance />
-                    < Chance />
-                    < Chance />
-                    < Chance />
-                    < Chance />
-                </div>
+                <ChanceContainer correctAns={this.props.newBoard}/>
             </div>
         )
     }
