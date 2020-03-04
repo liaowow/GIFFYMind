@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import Popover from 'react-bootstrap/Popover'
 // import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
@@ -31,6 +30,7 @@ export default class Square extends Component {
     }
 
     gifChooser = () => {
+        // console.log(this.state.gifs)
         return (
             <Popover id="popover-contained" title="Popover bottom">
                 {this.state.gifs.map(gifUrl => <img key={gifUrl} className="small_square" src={gifUrl} alt="animated gif" onClick={() => this.handleGifClick(gifUrl)} />)}
@@ -39,6 +39,7 @@ export default class Square extends Component {
     }
 
     handleGifClick = (gifUrl) => {
+        this.props.squareIsFilled(gifUrl)
         this.setState({
             filled: gifUrl
         })
@@ -48,7 +49,7 @@ export default class Square extends Component {
         // console.log(this.state.filled)
         if (this.state.filled !== "") {
             return (
-                <Col squareIsFilled={this.state.filled}><img className="square" src={this.state.filled} alt="selected gif"/></Col>
+                <Col><img className="square" src={this.state.filled} alt="selected gif"/></Col>
             )
         }
 

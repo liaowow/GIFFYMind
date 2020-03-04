@@ -5,22 +5,21 @@ import Row from 'react-bootstrap/Row'
 export default class SquareContainer extends Component {
 
     state = {
-        allSquaresFilled: []
+        squareArray: []
     }
 
     squareIsFilled = (squareUrl) => {
-        console.log(squareUrl)
-        this.setState({
-            allSquaresFilled: [...this.state.allSquaresFilled, squareUrl]
-        })
-
+        // console.log(squareUrl)
+        this.setState({squareArray: [...this.state.squareArray, squareUrl]},
+        () => this.props.userInput(this.state.squareArray))
     }
 
+
+
     render() {
-        // console.log(this.state.allSquaresFilled)
         return (
         <Row>  
-            <Square key="first_square" squareIsFilled={this.squareIsFilled}/>
+            <Square key="first_square" squareIsFilled={this.squareIsFilled} />
             <Square key="second_square" squareIsFilled={this.squareIsFilled}/>
             <Square key="third_square" squareIsFilled={this.squareIsFilled}/>
             <Square key="fourth_square" squareIsFilled={this.squareIsFilled}/>

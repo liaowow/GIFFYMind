@@ -5,6 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Gif.destroy_all
+User.destroy_all
+GameGif.destroy_all
+Game.destroy_all
+
 gracie = Gif.create(image_url: "https://ca.slack-edge.com/T02MD9XTF-UD5PW68JW-55f48a258cbc-512")
 mazen = Gif.create(image_url:"https://ca.slack-edge.com/T02MD9XTF-UFKMPLPQ8-a306271a419d-512")
 eric = Gif.create(image_url:"https://ca.slack-edge.com/T02MD9XTF-U91CXSUN4-455dd3bdbbbf-512")

@@ -3,17 +3,27 @@ import Checker from './Checker';
 import SquareContainer from './SquareContainer';
 
 export default class Chance extends Component {
+
+    state = {
+        completeArr: []
+    }
     
-    
+    userInput = (newArr) => {
+        // console.log(newArr)
+        this.setState({
+            completeArr: newArr
+        })
+    }
+
     render() {
         // console.log(this.state.allSquaresFilled)
         return (
             <div className="row">
                 <div className="column left">
-                    <SquareContainer />
+                    <SquareContainer userInput={this.userInput}/>
                 </div>
                 <div className="column right">
-                    <Checker correctAns={this.props.correctAns}/> 
+                    <Checker correctAns={this.props.correctAns} completeArr={this.state.completeArr}/> 
                 </div>
             </div>
 
