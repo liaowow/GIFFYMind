@@ -12,7 +12,7 @@ export default class Hint extends Component {
                     colorArr.splice(colorArr.length - 2, 2, "")
 
                     let cleanColor = colorArr.join("")
-                    return <div key={color} className={`small_square ${cleanColor}`}>1</div>
+                    return <div key={color} className={`small_square ${cleanColor}`}></div>
                 })}
                 
                 {/* <div className="small_square">1</div>

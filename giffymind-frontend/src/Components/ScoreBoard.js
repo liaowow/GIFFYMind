@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-export default class Results extends Component {
+export default class ScoreBoard extends Component {
     constructor(props, context) {
         super(props, context);
     

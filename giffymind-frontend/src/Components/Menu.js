@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Rules from './Rules'
-import Results from './Results';
+import ScoreBoard from './ScoreBoard';
 
 export default class Menu extends Component {
 
@@ -11,7 +11,7 @@ export default class Menu extends Component {
             <div className="menu">
                 <ButtonToolbar>
                     <Rules/>
-                    <Results/>
+                    <ScoreBoard/>
                     <Button onClick={this.props.handleUserClick} variant="dark" size="lg">Log Out</Button>
                 </ButtonToolbar>
                 <br />

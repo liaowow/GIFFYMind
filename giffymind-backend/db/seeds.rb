@@ -12,7 +12,7 @@ Game.destroy_all
 
 gracie = Gif.create(image_url: "https://ca.slack-edge.com/T02MD9XTF-UD5PW68JW-55f48a258cbc-512")
 mazen = Gif.create(image_url:"https://ca.slack-edge.com/T02MD9XTF-UFKMPLPQ8-a306271a419d-512")
-eric = Gif.create(image_url:"https://ca.slack-edge.com/T02MD9XTF-U91CXSUN4-455dd3bdbbbf-512")
+ian = Gif.create(image_url:"https://emoji.slack-edge.com/T02MD9XTF/ultimate-ian-hollander/fd19494751960b66.jpg")
 thinking = Gif.create(image_url:"https://media.giphy.com/media/CaiVJuZGvR8HK/giphy.gif")
 kissing = Gif.create(image_url:"https://media.giphy.com/media/8YBM61XW2vZJykO0j4/giphy.gif")
 screaming = Gif.create(image_url:"https://media.giphy.com/media/11CD1W0njRgJFK/giphy.gif")
@@ -26,12 +26,12 @@ g1 = Game.create(user_id: annie.id, attempts: 0)
 g2 = Game.create(user_id: liz.id, attempts: 0)
 
 gg1 = GameGif.create(game_id: g1.id, gif_id: gracie.id)
-gg2 = GameGif.create(game_id: g1.id, gif_id: eric.id)
+gg2 = GameGif.create(game_id: g1.id, gif_id: ian.id)
 gg3 = GameGif.create(game_id: g1.id, gif_id: winking.id)
 gg4 = GameGif.create(game_id: g1.id, gif_id: mazen.id)
 
 gg5 = GameGif.create(game_id: g2.id, gif_id: kissing.id)
-gg6 = GameGif.create(game_id: g2.id, gif_id: eric.id)
+gg6 = GameGif.create(game_id: g2.id, gif_id: ian.id)
 gg7 = GameGif.create(game_id: g2.id, gif_id: tongue_out.id)
 gg8 = GameGif.create(game_id: g2.id, gif_id: screaming.id)
 
