@@ -12,7 +12,7 @@ export default class Menu extends Component {
                 <ButtonToolbar>
                     <Rules/>
                     <Results/>
-                    <Button variant="dark" size="lg">Log Out</Button>
+                    <Button onClick={this.props.handleUserClick} variant="dark" size="lg">Log Out</Button>
                 </ButtonToolbar>
                 <br />
             </div>

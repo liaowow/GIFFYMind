@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import Hint from './Hint';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
 
 export default class Checker extends Component {
 
     state = {
         clicked: false,
-        hintArr: []
-
+        hintArr: [],
     }
 
     handleCheck = () => {
@@ -31,20 +30,39 @@ export default class Checker extends Component {
                     hintArr.splice(i,2,filteredArr[0])
                 } 
             }
-           
             
         }
         
         this.setState({
             clicked: !this.state.clicked,
-            hintArr: hintArr
+            hintArr: hintArr,
         })
+        
+        this.props.addAttempts()
+    }
 
+    handleClose = () => {
+        this.setState({
+            clicked: false
+        })
     }
 
     render() {
-        console.log(this.state.hintArr)
+        // console.log(this.state.hintArr)
         if (this.state.clicked) {
+            let stringHint = this.state.hintArr.toString()
+            let greenArr = ["green-0","green-1","green-2","green-3"].toString()
+            if (stringHint === greenArr){
+                return (
+                    <div id="dialog">
+                        <div>
+                            <div className="winning"> <h1>You Won! </h1> </div>
+                            <Button onClick={this.props.handleOutcome}>Start Over</Button>
+                        </div>
+                    </div>
+                )
+            }
+
             return (
                 <Hint hintArr={this.state.hintArr}/>
             )
@@ -52,7 +70,7 @@ export default class Checker extends Component {
 
         return (
             <div>
-                <Button className="score" size="lg" variant="info" onClick={this.handleCheck}>Check</Button>
+                <Button className="score" size="lg" variant="info" href="#popup" onClick={this.handleCheck}>Check</Button>
             </div>
         )
     }

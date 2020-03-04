@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import Game from './Game';
 import Menu from './Menu'
-// import Results from './Results';
 import Button from 'react-bootstrap/Button';
-// import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col'
 
 export default class User extends Component {
 
@@ -21,7 +18,7 @@ export default class User extends Component {
     }
 
 
-    handleClick = () => {
+    handleUserClick = () => {
         console.log(this.state.username)
         fetch(`http://localhost:3000/users`, {
             method: "POST",
@@ -47,9 +44,9 @@ export default class User extends Component {
             return(
                 <div className="centercontainer">
                     <h1 className="funfont">GIFFYMind</h1>
-                    < Menu />
+                    < Menu handleUserClick={this.handleUserClick}/>
                     <br />
-                    < Game newBoard={this.state.game}/>
+                    <Game newBoard={this.state.game} handleUserClick={this.handleUserClick}/>
                 </div>
             )
         }
@@ -64,7 +61,7 @@ export default class User extends Component {
                 <input type="text" placeholder="" value={this.state.username} onChange={this.handleChange}/>
                 <br />
                 <br />
-                <Button variant="dark" type="submit" onClick={this.handleClick}>Go!</Button>
+                <Button variant="dark" type="submit" onClick={this.handleUserClick}>Go!</Button>
             </div>
         )
     }

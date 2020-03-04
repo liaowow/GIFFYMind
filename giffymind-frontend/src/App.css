@@ -118,8 +118,42 @@ input[type=text] {
   width: 80px;
   height: 80px;
   cursor: auto;
+  background-color: teal;
 }
 
 .score {
   margin-top: 60px;
+}
+
+.small_square.green {
+  background-color: green
+}
+
+.small_square.yellow{
+  background-color: yellow
+}
+
+.small_square.white{
+  background-color: white
+}
+
+#dialog {
+  position: fixed;
+  top: 50%;
+  left: 40%;
+  width: 400px;
+  height: 400px;
+
+  background-color: white;
+  border-radius: 40px;
+  border: 1px solid darkgray;
+  padding: 24px;
+  text-align: center;
+  z-index: 1;
+  
+}
+
+.winning{
+  font-family: 'Lakki Reddy', sans-serif;
+  margin-top: 40%;
 }
