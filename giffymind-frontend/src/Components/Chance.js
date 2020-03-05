@@ -23,7 +23,13 @@ export default class Chance extends Component {
                     <SquareContainer userInput={this.userInput}/>
                 </div>
                 <div className="column right">
-                    <Checker correctAns={this.props.correctAns} completeArr={this.state.completeArr} addAttempts={this.props.addAttempts} handleOutcome={this.props.handleOutcome}/> 
+                    <Checker handleTimerStop={this.props.handleTimerStop} 
+                             correctAns={this.props.correctAns} 
+                             completeArr={this.state.completeArr} 
+                             addAttempts={this.props.addAttempts} 
+                             numOfAttempts={this.props.numOfAttempts} 
+                             handleOutcome={this.props.handleOutcome}
+                             handleWinning={this.props.handleWinning} /> 
                 </div>
             </div>
 

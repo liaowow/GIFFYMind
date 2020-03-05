@@ -4,7 +4,7 @@ export default class Hint extends Component {
 
 
     render() {
-        // console.log(this.props.colorArr)s
+        // console.log(this.props.colorArr)
         return (
             <div className="small_square_container">
                 {this.props.hintArr.map(color => {
@@ -15,10 +15,6 @@ export default class Hint extends Component {
                     return <div key={color} className={`small_square ${cleanColor}`}></div>
                 })}
                 
-                {/* <div className="small_square">1</div>
-                <div className="small_square">1</div>
-                <div className="small_square">1</div>
-                <div className="small_square">1</div> */}
             </div>
         )
     }

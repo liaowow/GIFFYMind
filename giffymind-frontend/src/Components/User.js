@@ -8,6 +8,8 @@ export default class User extends Component {
     state = {
         username: "",
         game: [],
+        user: {},
+        userGameInstance: {},
         clicked: false
     }
 
@@ -19,7 +21,7 @@ export default class User extends Component {
 
 
     handleUserClick = () => {
-        console.log(this.state.username)
+        // console.log(this.state.username)
         fetch(`http://localhost:3000/users`, {
             method: "POST",
             headers: {
@@ -28,10 +30,27 @@ export default class User extends Component {
             body: JSON.stringify({username: this.state.username})
         })
         .then(r => r.json())
-        .then(resp => {this.setState({
+        .then(resp => {
+            console.log(resp)
+            this.setState({
             username: resp.username.username,
-            game: resp.game
+            game: resp.game,
+            user: resp.username
         })})
+
+        fetch("http://localhost:3000/games", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({user_id: this.state.user.id})
+        })
+        .then(r => r.json())
+        .then(newGame => {
+            this.setState({
+                userGameInstance: newGame
+            })
+        })
 
         this.setState({ 
             clicked:!this.state.clicked
@@ -39,14 +58,15 @@ export default class User extends Component {
     }
 
     render() {
-
+        console.log("Correct:", this.state.game)
+        console.log(this.state)
         if(this.state.clicked){
             return(
                 <div className="centercontainer">
                     <h1 className="funfont">GIFFYMind</h1>
                     < Menu handleUserClick={this.handleUserClick}/>
                     <br />
-                    <Game newBoard={this.state.game} handleUserClick={this.handleUserClick}/>
+                    <Game user={this.state.user} newBoard={this.state.game} handleUserClick={this.handleUserClick}/>
                 </div>
             )
         }

@@ -1,67 +1,90 @@
 import React, { Component } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import Table from 'react-bootstrap/Table';
 
 export default class ScoreBoard extends Component {
-    constructor(props, context) {
-        super(props, context);
-    
-        this.handleShow = this.handleShow.bind(this);
-        this.handleClose = this.handleClose.bind(this);
-    
-        this.state = {
-          show: false
-        };
-      }
-    
-      handleClose() {
-        this.setState({ show: false });
-      }
-    
-      handleShow() {
-        this.setState({ show: true });
-      }
-    
-      render() {
-    
-        return (
-          <div className="somespace">
-            <Button variant="light" size="lg" onClick={this.handleShow}>
-              Scoreboard
-            </Button>
-    
-            <Modal show={this.state.show} onHide={this.handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Scoreboard</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <p>
-                At the beginning of each game the computer generates a secret code of four gifs. The gifs are always chosen from the same eight gifs. Duplicates are allowed, so the computer could even choose the same gif four times.
-                </p>
-                <p>
-                Your objective is to guess the secret code. You will have to guess the gif and put them in the same order as they are in the secret code.
-                </p>
-                <p>
-                Choose four gifs in the next available row and then click on the Check button. The computer will score your guess in the following way:
-                </p>
-                <ul>
-                    <li>
-                    For each guess that is right in both gif and position you get a green point
-                    </li>
-                    <li>
-                    For each guess that is right in gif but not in position you get a yellow point
-                    </li>
-                </ul>
-                <p>
-                You have ten chances to make your guesses, if you exhaust all of them without guessing the code, you lose the game.
-                </p>
-                <p> Good Luck!</p>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button onClick={this.handleClose}>Close</Button>
-              </Modal.Footer>
-            </Modal>
-          </div>
-        );
-    }
+  constructor(props, context) {
+      super(props, context);
+  
+      this.handleShow = this.handleShow.bind(this);
+      this.handleClose = this.handleClose.bind(this);
+  
+      this.state = {
+        show: false,
+        games: []
+      };
+  }
+  
+  handleClose() {
+    this.setState({ show: false });
+  }
+
+  handleShow() {
+    this.setState({ show: true });
+  }
+
+  componentDidMount(){
+    fetch("http://localhost:3000/games")
+    .then(r => r.json())
+    .then(games => {
+      this.setState({
+        games
+      })
+    })
+  }
+
+  renderUserScores = () => {
+
+    return this.state.games.map(game => {
+
+      let minutes = Math.floor(game.playtime / 60)
+      let seconds = game.playtime % 60
+      let stringifyTime = `${minutes}:${seconds}`
+      
+      return (
+        <tr>
+          <td>1</td>
+          <td>{game.user.username}</td>
+          <td>{game.attempts}</td>
+          <td>{stringifyTime}</td>
+        </tr>
+      )
+    })
+  }
+  
+  render() {
+
+    return (
+      <div className="somespace">
+        <Button variant="light" size="lg" onClick={this.handleShow}>
+          Scoreboard
+        </Button>
+
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Scoreboard</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Table striped bordered condensed="true" hover>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Username</th>
+                  <th># of Attempts</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.renderUserScores()}
+              </tbody>
+            </Table>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.handleClose}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
+    );
+  }
 }

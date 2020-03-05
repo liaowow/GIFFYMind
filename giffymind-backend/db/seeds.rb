@@ -22,8 +22,8 @@ winking = Gif.create(image_url:"https://media.giphy.com/media/138soHYfxnxfbi/gip
 annie = User.create(username: "annie")
 liz = User.create(username: "liz")
 
-g1 = Game.create(user_id: annie.id, attempts: 0)
-g2 = Game.create(user_id: liz.id, attempts: 0)
+g1 = Game.create(user_id: annie.id, attempts: 3, playtime: 28)
+g2 = Game.create(user_id: liz.id, attempts: 4, playtime: 85)
 
 gg1 = GameGif.create(game_id: g1.id, gif_id: gracie.id)
 gg2 = GameGif.create(game_id: g1.id, gif_id: ian.id)
