@@ -47,10 +47,13 @@ export default class Rules extends Component {
                 </p>
                 <ul>
                     <li>
-                    For each guess that is right in both gif and position you get a green point
+                      For each guess that is right in both gif and position you get a green point
                     </li>
                     <li>
-                    For each guess that is right in gif but not in position you get a yellow point
+                      For each guess that is right in gif but not in position you get a yellow point
+                    </li>
+                    <li>
+                      For each guess that is wrong you get a white point
                     </li>
                 </ul>
                 <p>
