@@ -10,7 +10,7 @@ export default class Checker extends Component {
     }
 
     handleCheck = () => {
-        // console.log(this.props)
+        console.log(this.props.correcAns)
         let correctArr = this.props.correctAns
         let userArr = this.props.completeArr
         let hintArr = [...this.state.hintArr]

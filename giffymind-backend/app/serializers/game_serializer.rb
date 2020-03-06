@@ -1,4 +1,4 @@
 class GameSerializer < ActiveModel::Serializer
-  attributes :id, :attempts, :playtime 
+  attributes :id, :attempts, :playtime, :status
   has_one :user
 end

@@ -32,7 +32,7 @@ export default class ScoreBoard extends Component {
         games
       })
     })
-  }
+  }  
 
   renderUserScores = () => {
 
@@ -42,14 +42,18 @@ export default class ScoreBoard extends Component {
       let seconds = game.playtime % 60
       let stringifyTime = `${minutes}:${seconds}`
       
-      return (
-        <tr>
-          <td>1</td>
-          <td>{game.user.username}</td>
-          <td>{game.attempts}</td>
-          <td>{stringifyTime}</td>
-        </tr>
-      )
+      if (game.attempts >= 1) {
+        return (
+          <tr>
+            <td>{game.status ? "Won" : "Lost"}</td>
+            <td>{game.user.username}</td>
+            <td>{game.attempts}</td>
+            <td>{stringifyTime}</td>
+          </tr>
+        )
+
+      }
+
     })
   }
   
@@ -69,7 +73,7 @@ export default class ScoreBoard extends Component {
             <Table striped bordered condensed="true" hover>
               <thead>
                 <tr>
-                  <th>#</th>
+                  <th>Result</th>
                   <th>Username</th>
                   <th># of Attempts</th>
                   <th>Time</th>

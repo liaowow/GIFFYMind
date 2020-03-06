@@ -7,7 +7,7 @@ export default class User extends Component {
 
     state = {
         username: "",
-        game: [],
+        correctAns: [],
         user: {},
         userGameInstance: {},
         clicked: false
@@ -31,42 +31,80 @@ export default class User extends Component {
         })
         .then(r => r.json())
         .then(resp => {
-            console.log(resp)
+            // console.log("response from fetch:", resp)
             this.setState({
-            username: resp.username.username,
-            game: resp.game,
-            user: resp.username
+            username: resp.user.username,
+            correctAns: resp.correct,
+            user: resp.user,
+            userGameInstance: resp.game
         })})
-
-        fetch("http://localhost:3000/games", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify({user_id: this.state.user.id})
-        })
-        .then(r => r.json())
-        .then(newGame => {
-            this.setState({
-                userGameInstance: newGame
-            })
-        })
 
         this.setState({ 
             clicked:!this.state.clicked
         })
     }
 
+    // update game instance with new playtime
+    handleGamePlaytimeUpdate = (updatedPlaytime) => {
+        // console.log(updatedPlaytime)
+        this.setState({
+            userGameInstance: {
+                ...this.state.userGameInstance,
+                ...this.state.userGameInstance.playtime,
+                playtime: updatedPlaytime
+            } 
+        }, () => {
+            fetch(`http://localhost:3000/games/${this.state.userGameInstance.id}`, {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({game: this.state.userGameInstance})
+            })
+            .then(r => r.json())
+        })
+
+        
+    }
+
+    // update # of attempts
+    handleGameAttemptsUpdate = (updatedAttempts) => {
+        this.setState({
+            userGameInstance: {
+                ...this.state.userGameInstance,
+                ...this.state.userGameInstance.attempts,
+                attempts: updatedAttempts
+            } 
+        }, () => {
+            fetch(`http://localhost:3000/games/${this.state.userGameInstance.id}`, {
+                method: "PATCH",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify({game: this.state.userGameInstance})
+            })
+            .then(r => r.json())
+
+        })
+
+    }
+
     render() {
-        console.log("Correct:", this.state.game)
-        console.log(this.state)
+        console.log("Correct Answer:", this.state.correctAns)
+        console.log("State in render:", this.state)
         if(this.state.clicked){
             return(
                 <div className="centercontainer">
                     <h1 className="funfont">GIFFYMind</h1>
                     < Menu handleUserClick={this.handleUserClick}/>
                     <br />
-                    <Game user={this.state.user} newBoard={this.state.game} handleUserClick={this.handleUserClick}/>
+                    <Game user={this.state.user} 
+                          userGameInstance={this.state.userGameInstance} 
+                          correctAns={this.state.correctAns} 
+                          handleUserClick={this.handleUserClick}
+                          handleGamePlaytimeUpdate={this.handleGamePlaytimeUpdate}
+                          handleGameAttemptsUpdate={this.handleGameAttemptsUpdate}
+                          handleGameUpdate={this.handleGameUpdate}/>
                 </div>
             )
         }

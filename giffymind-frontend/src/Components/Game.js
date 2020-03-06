@@ -13,7 +13,7 @@ export default class Game extends Component {
     addAttempts = () => {
         this.setState({
             attempts: +this.state.attempts + 1
-        })
+        }, () => this.props.handleGameAttemptsUpdate(this.state.attempts))
     }
 
 
@@ -29,6 +29,17 @@ export default class Game extends Component {
     handleWinning = () => {
         this.setState({
             won: 1
+        }, () => {
+            this.props.userGameInstance.status = true
+            fetch(`http://localhost:3000/games/${this.props.userGameInstance.id}`, {
+                method: "PATCH",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify({status: this.props.userGameInstance.status})
+            })
+            .then(r => r.json())
+
         })
     }
 
@@ -41,8 +52,16 @@ export default class Game extends Component {
                       <div className="outcome"> <h1>You Lost! </h1> </div>
                       <Button onClick={this.handleOutcome}>Try Again!</Button>
                     </div>
-                    <Timer user={this.props.user}  numOfAttempts={this.state.attempts}/>
-                    <ChanceContainer handleWinning={this.handleWinning} correctAns={this.props.newBoard} handleUserClick={this.props.handleUserClick} handleTimerStop={this.handleTimerStop} addAttempts={this.addAttempts}/>
+                    <Timer user={this.props.user} 
+                           userGameInstance={this.props.userGameInstance}
+                           numOfAttempts={this.state.attempts}
+                           handleGamePlaytimeUpdate={this.props.handleGamePlaytimeUpdate}
+                           handleGameUpdate={this.props.handleGameUpdate}/>
+                    <ChanceContainer handleWinning={this.handleWinning} 
+                                     correctAns={this.props.correctAns} 
+                                     handleUserClick={this.props.handleUserClick} 
+                                     handleTimerStop={this.handleTimerStop} 
+                                     addAttempts={this.addAttempts}/>
                 </div>
             )
           }
@@ -50,9 +69,13 @@ export default class Game extends Component {
         return (
             <div>
                 <h6 className="funfontsm">New Game</h6>
-                <Timer won={this.state.won} numOfAttempts={this.state.attempts}/>
+                <Timer won={this.state.won} 
+                       userGameInstance={this.props.userGameInstance}
+                       numOfAttempts={this.state.attempts}
+                       handleGamePlaytimeUpdate={this.props.handleGamePlaytimeUpdate}
+                       handleGameUpdate={this.props.handleGameUpdate}/>
                 <ChanceContainer handleWinning={this.handleWinning} 
-                                 correctAns={this.props.newBoard} 
+                                 correctAns={this.props.correctAns} 
                                  handleUserClick={this.props.handleUserClick} 
                                  handleTimerStop={this.handleTimerStop} 
                                  addAttempts={this.addAttempts}

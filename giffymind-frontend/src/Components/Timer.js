@@ -54,9 +54,11 @@ export default class Timer extends Component {
 
         if (this.state.playedTime !== prevState.playedTime) {
             // get user's latest game instance id
-            console.log(this.props.user)
+            console.log(this.props.userGameInstance)
 
-            // let gameId = this.props.user.games[this.props.user.games.length - 1].id
+            // add playtime to game instance
+            this.props.handleGamePlaytimeUpdate(this.state.playedTime)
+            
 
             // patch/update the user's latest game instance
             // fetch(`http://localhost:3000/users/${this.props.userId}`, {
