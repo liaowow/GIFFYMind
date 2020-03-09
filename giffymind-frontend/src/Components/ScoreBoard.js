@@ -25,7 +25,7 @@ export default class ScoreBoard extends Component {
   }
 
   componentDidMount(){
-    fetch("http://localhost:3000/games")
+    fetch("https://giffymind.herokuapp.com/games")
     .then(r => r.json())
     .then(games => {
       this.setState({

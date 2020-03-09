@@ -19,7 +19,7 @@ export default class Square extends Component {
         })
 
         //fetch all gifs, save them into state
-        fetch("http://localhost:3000/gifs")
+        fetch("https://giffymind.herokuapp.com/gifs")
         .then(r => r.json())
         .then(gifsData => {
             this.setState({
