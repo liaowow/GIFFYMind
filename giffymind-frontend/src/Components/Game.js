@@ -44,7 +44,7 @@ export default class Game extends Component {
     }
 
     render() {
-        if (this.state.attempts >= 5 && this.state.won === 0) {
+        if (this.state.attempts >= 10 && this.state.won === 0) {
 
             return(
                 <div>
