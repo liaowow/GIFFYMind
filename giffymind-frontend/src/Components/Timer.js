@@ -58,7 +58,6 @@ export default class Timer extends Component {
 
             // add playtime to game instance
             this.props.handleGamePlaytimeUpdate(this.state.playedTime)
-            
         }
 
     }

@@ -22,7 +22,7 @@ export default class User extends Component {
 
     handleUserClick = () => {
         // console.log(this.state.username)
-        fetch(`http://localhost:3000/users`, {
+        fetch(`https://giffymind.herokuapp.com/users`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -54,7 +54,7 @@ export default class User extends Component {
                 playtime: updatedPlaytime
             } 
         }, () => {
-            fetch(`http://localhost:3000/games/${this.state.userGameInstance.id}`, {
+            fetch(`https://giffymind.herokuapp.com/games/${this.state.userGameInstance.id}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json"
@@ -76,7 +76,7 @@ export default class User extends Component {
                 attempts: updatedAttempts
             } 
         }, () => {
-            fetch(`http://localhost:3000/games/${this.state.userGameInstance.id}`, {
+            fetch(`https://giffymind.herokuapp.com/games/${this.state.userGameInstance.id}`, {
                 method: "PATCH",
                 headers: {
                     "content-type": "application/json"
