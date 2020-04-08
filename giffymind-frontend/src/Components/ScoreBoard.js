@@ -44,16 +44,14 @@ export default class ScoreBoard extends Component {
       
       if (game.attempts >= 1) {
         return (
-          <tr>
+          <tr key={game.id}>
             <td>{game.status ? "Won" : "Lost"}</td>
             <td>{game.user.username}</td>
             <td>{game.attempts}</td>
             <td>{stringifyTime}</td>
           </tr>
         )
-
       }
-
     })
   }
   

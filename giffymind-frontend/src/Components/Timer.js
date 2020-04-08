@@ -59,18 +59,6 @@ export default class Timer extends Component {
             // add playtime to game instance
             this.props.handleGamePlaytimeUpdate(this.state.playedTime)
             
-
-            // patch/update the user's latest game instance
-            // fetch(`http://localhost:3000/users/${this.props.userId}`, {
-            //     method: "PATCH",
-            //     headers: {
-            //         "content-type": "application/json"
-            //     },
-            //     body: JSON.stringify({
-                    
-            //     })
-            // })
-            // .then(r => r.json())
         }
 
     }
